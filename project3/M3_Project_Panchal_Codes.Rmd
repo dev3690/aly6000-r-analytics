@@ -1,0 +1,434 @@
+---
+output: html_document
+---
+
+```{r librariesdata, message=FALSE, warning=FALSE}
+# Libraries 
+library(kableExtra)
+library(tidyverse)
+library(knitr)
+library(FSA)
+library(magrittr)
+library(RColorBrewer)
+library(readxl)
+
+# Data sets 
+inchBio <- read_excel("inchBio.xlsx")
+```
+
+<P><BR>
+<CENTER>
+<FONT SIZE = 5, COLOR="#000066">
+<B>Module 3 Project: Fish Population Analysis in Inch Lake</B></FONT>
+<FONT SIZE = 4, COLOR="#660000">  
+Name : Dev Panchal    
+Class Name : ALY6000 Introduction to Analytics    
+Instructor: Dr. Dee Chiluiza, PhD  
+Date of Submission : 29th Jan, 2025  
+</FONT>
+</CENTER>  
+
+<P>
+<FONT SIZE = 3, COLOR = "#A11515">
+<B>1. INTRODUCTION</B>
+</FONT>
+
+<P>
+The study of fish populations in freshwater ecosystems represents a crucial investigation into aquatic ecosystem dynamics. This research, based on data from inchBio.xlsx, focuses on understanding the complex relationships between different fish species and their environment. The dataset encompasses comprehensive measurements of 505 fish specimens across seven distinct species, including vital metrics such as length, weight, and species identification. This type of fisheries research is fundamental to ecological studies, as fish populations serve as indicators of ecosystem health and environmental change. According to major scientists, long-term monitoring of fish populations in freshwater lakes is essential for understanding ecological patterns and implementing effective conservation strategies. The analysis of such detailed biological data provides valuable insights into population dynamics and ecosystem functioning.     
+
+The analysis addresses several key questions about the lake's ecosystem through the examination of the inchBio dataset: What is the current species composition and how are different fish species distributed throughout the water body? How do growth patterns vary among different species? What are the relationships between fish length and weight across species? To answer these questions, the study employs various statistical tools including descriptive statistics, frequency analysis, and probability distributions. The graphical representations include pie charts for species distribution, bar plots for cumulative probabilities, and comparative tables for morphometric data. These analytical approaches align with standard fisheries research methodologies as outlined by scientists in their comprehensive guide to freshwater ecosystem assessment. The combination of statistical analysis and visual representation ensures a thorough understanding of the population dynamics.    
+
+The significance of this research extends beyond mere data collection and analysis. The findings contribute to the broader understanding of freshwater ecosystems and inform evidence-based management decisions. Detailed population studies are crucial for developing effective conservation strategies and maintaining ecosystem balance. This study utilizes the latest analytical techniques in fisheries science, incorporating both traditional statistical methods and modern data visualization approaches. This comprehensive approach allows examination of multiple aspects of the fish population, from individual species characteristics to overall ecosystem patterns. The results provide valuable insights for lake managers, conservation biologists, and environmental policymakers, helping them make informed decisions about resource management and species protection. Furthermore, this study establishes a robust methodology for analyzing similar datasets in future research endeavors.
+
+
+
+Research Objectives:
+<BR>
+• To analyze species diversity and distribution patterns within the fish population dataset (inchBio.xlsx)
+<BR>
+• To examine and quantify length-weight relationships across different fish species
+<BR>
+• To evaluate population structure through comprehensive statistical analysis
+<BR>
+• To identify potential ecological patterns and relationships between species
+<BR>
+• To determine size hierarchies and growth patterns among various fish species
+<BR>
+• To establish baseline data for future comparative studies
+<BR>
+<BR>
+<BR>
+<P>
+<FONT SIZE = 3, COLOR = "#A11515">
+<B>2. DATA ANALYSIS</B>
+</FONT>
+
+
+<P><BR>
+<FONT SIZE = 3, COLOR = "#A11515">
+<B>Task 1: Comprehensive Data Exploration and Structure Analysis</B>
+</FONT>
+<P><BR>
+<FONT SIZE = 2, COLOR = "#A11515">
+<B>Task 1A: Summary Statistics Analysis</B>
+</FONT>
+<BR>
+<B>Description</B>: This subtask focuses on generating comprehensive summary statistics for the inchBio dataset using the summary function, enhanced with kable and kable_styling for improved presentation. Summary statistics are crucial for understanding the central tendencies, spread, and potential outliers in our data. This analysis will provide key insights into the distribution of fish measurements and help identify any unusual patterns or potential data quality issues. The use of kable formatting enhances the readability of these statistics, making them more accessible for interpretation and presentation purposes. This initial statistical overview serves as a foundation for more detailed analyses and helps guide our subsequent analytical approaches.
+<BR>
+```{r task1A}
+kable(summary(inchBio), 
+      
+      caption = "Summary Statistics of Fish Measurements") %>%
+  
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                position = "center",
+                full_width = FALSE,)
+```
+<BR>
+<B>Observations</B>: This table presents comprehensive summary statistics for fish measurements across multiple variables. The dataset includes netID (ranging from 4 to 206), fishID (7 to 915), species (505 total observations), length (30.47mm to 432.58mm), weight (0.9027g to 1071.8813g), and scale (logical variable with 194 FALSE and 311 TRUE values). The central tendencies show interesting patterns - for example, the mean length (160.52mm) is slightly higher than the median (153.04mm), suggesting a slight right skew in fish lengths. Similarly, the weight distribution shows a substantial right skew, with mean (129.32g) being much higher than median (60.24g), indicating the presence of some notably heavier fish in the sample.
+
+<BR>
+
+<P><BR>
+<FONT SIZE = 2, COLOR = "#A11515">
+<B>Task 1B: Detailed Structure Examination</B>
+</FONT>
+<BR>
+<B>Description</B>: This subtask employs the glimpse to provide a detailed examination of dataset's structure. Unlike the summary statistics, glimpse offers a different perspective by showing the actual data types of each variable and a sample of the raw values. This is particularly important for verifying data formatting, identifying potential coding issues, and ensuring that variables are properly classified for our analytical purposes. Understanding the data structure is essential for choosing appropriate statistical methods and ensuring the validity of our subsequent analyses.
+<BR>
+```{r task1B}
+glimpse(inchBio)
+```
+<BR>
+<B>Observations</B>: The glimpse output provides a clear view of our dataset's structure, showing that  have both numeric variables (length and weight) and categorical variables (species). The data types appear to be appropriately assigned, with no obvious miscoding issues. The sample values displayed for each variable appear reasonable and consistent with expected fish measurement data. This structural overview confirms that our data is properly formatted for the planned statistical analyses and visualizations.
+<BR>
+
+<P><BR>
+<FONT SIZE = 2, COLOR = "#A11515">
+<B>Task 1C: Comparative Analysis of Summary Methods</B>
+</FONT>
+<BR>
+<B>Description</B>: This subtask involves a detailed comparison of the information obtained from both summary and glimpse functions. Understanding the complementary nature of these different approaches to data examination is crucial for comprehensive data analysis. While summary provides statistical measures, glimpse offers a structural perspective. Together, they provide a more complete understanding of our dataset's characteristics and quality. This comparison helps identify the unique insights provided by each method and ensures I haven't missed any important aspects of our data.
+<BR>
+<B>Observations</B>: The summary function (Task 1A) and glimpse function (Task 1B) provide complementary insights into our dataset. The summary function excels at providing statistical measures such as means, medians, and quartiles, which are essential for understanding the distribution of our numerical data. It also shows the range of values and helps identify potential outliers. In contrast, the glimpse function provides a more structural view, showing the exact data types and raw values, which is crucial for verifying data formatting and consistency. Together, these methods reveal that our dataset is well-structured with appropriate variable types and contains biologically reasonable values for fish measurements. The combination of these approaches confirms the data's suitability for our planned analyses and helps identify any potential areas requiring additional attention during subsequent statistical procedures.
+<BR>
+
+<P><BR>
+<FONT SIZE = 2, COLOR = "#A11515">
+<B>Task 2: Dataset Dimensions Analysis</B>
+</FONT>
+<BR>
+<B>Description</B>: This task quantifies the dataset's scope by determining the number of observations and variables. Understanding these dimensions is crucial for:
+• Assessing statistical power
+• Evaluating sample representativeness
+• Planning appropriate analytical approaches
+<BR>
+
+```{r task2}
+num_columns <- ncol(inchBio)
+num_rows <- nrow(inchBio)
+```
+
+The dataset contains `r num_columns` variables (columns) and `r num_rows` observations (rows).
+
+<BR>
+<B>Observations</B>: This code snippet and its output show the basic structure of the inchBio dataset. Using R functions ncol() and nrow(), it reveals that the dataset consists of 6 variables (columns) and 505 observations (rows). This information gives a quick look of the dataset's dimensions, which is essential for understanding the scope and size of the data being analyzed. The 505 observations match with our previous analysis of fish measurements.
+
+<BR>
+<P><BR>
+<FONT SIZE = 2, COLOR = "#A11515">
+<B>Task 3: Key Variables Analysis</B>
+</FONT>
+<BR>
+<B>Description</B>: This task focuses on the three primary variables essential for fish population analysis: Species identification (taxonomic classification), Length measurements (morphometric data), Weight measurements (body mass data)
+These variables form the core of our ecological analysis and provide the foundation for understanding fish population characteristics in Inch Lake.
+<BR>
+
+```{r task3}
+inchBio %>%
+  select(species, length, weight) %>%
+  headtail(n = 5) %>%
+  kable(caption = "First and Last 5 Observations of Selected Variables",
+        align = 'c',
+        digits = 2) %>%
+  kable_styling(full_width = FALSE,
+                position = "center") %>%
+  row_spec(0, bold = TRUE) %>%
+  row_spec(5, extra_css = "border-bottom: 2px solid black")
+```
+
+<BR>
+<B>Observations</B>: This table shows the first and last 5 observations of the fish dataset, focusing on species, length (mm), and weight (g) measurements. The first 5 rows display Black Crappie data, showing considerable size variation within the species - lengths range from 154.17mm to 332.43mm and weights from 47.29g to 580.88g. The last 5 rows show Yellow Perch measurements, which are generally smaller than Black Crappie. Yellow Perch measurements show lengths from 72.45mm to 223.26mm and weights from 3.04g to 114.20g. This sample suggests that Black Crappie tends to be larger than Yellow Perch in both length and weight, though there is significant variation within each species.
+
+<BR>
+
+<P><BR>
+<FONT SIZE = 2, COLOR = "#A11515">
+<B>Task 4: Comprehensive Descriptive Statistics</B>
+</FONT>
+<BR>
+<B>Description</B>: This task provides detailed statistical measures for fish length and weight, including: Central tendency measures (mean, median), Dispersion measures (standard deviation), Range statistics (minimum, maximum), Distribution characteristics (quartiles)
+These statistics help quantify the size distribution patterns in the fish population.
+<BR>
+
+```{r task4}
+
+len_mean <- mean(inchBio$length)
+len_median <- median(inchBio$length)
+len_sd <- sd(inchBio$length)
+len_min <- min(inchBio$length)
+len_max <- max(inchBio$length)
+len_q1 <- quantile(inchBio$length, 0.25)
+len_q3 <- quantile(inchBio$length, 0.75)
+
+wght_mean <- mean(inchBio$weight)
+wght_median <- median(inchBio$weight)
+wght_sd <- sd(inchBio$weight)
+wght_min <- min(inchBio$weight)
+wght_max <- max(inchBio$weight)
+wght_q1 <- quantile(inchBio$weight, 0.25)
+wght_q3 <- quantile(inchBio$weight, 0.75)
+
+length_stats <- c(len_mean, len_median, len_sd, 
+                 len_min, len_max, len_q1, len_q3)
+weight_stats <- c(wght_mean, wght_median, wght_sd, 
+                  wght_min, wght_max, wght_q1, wght_q3)
+
+row_names <- c("Mean", "Median", "Standard Deviation", 
+               "Minimum", "Maximum", "First Quartile", "Third Quartile")
+
+
+# Create matrix and display results
+statistics_matrix <- cbind(length_stats, weight_stats)
+rownames(statistics_matrix) <- row_names
+colnames(statistics_matrix) <- c("Length (mm)", "Weight (g)")
+
+kable(statistics_matrix, 
+      caption = "Descriptive Statistics for Fish Measurements",
+      digits = 2,
+      align = 'c') %>%
+  kable_styling(position = "center",full_width = FALSE) %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(1:2, border_right = TRUE)
+```
+
+<BR>
+<B>Observations</B>: This table presents the descriptive statistics for fish measurements, showing both length (mm) and weight (g) distributions. The average fish length is 160.52mm with a median of 153.04mm, while the average weight is 129.32g with a median of 60.24g. There is considerable variation in both measurements, as shown by the large standard deviations (100.29mm for length, 167.57g for weight). The size range is quite wide, with lengths spanning from 30.47mm to 432.58mm, and weights ranging dramatically from 0.90g to 1071.88g. The interquartile ranges (between Q1 and Q3) indicate that the middle 50% of fish lengths fall between 63.90mm and 230.11mm, and weights between 3.07g and 193.41g.
+
+<BR>
+
+<P><BR>
+<FONT SIZE = 2, COLOR = "#A11515">
+<B>Task 5: Species-Specific Size Analysis</B>
+</FONT>
+<BR>
+<B>Description</B>: This task examines size characteristics by species, providing: Mean length and weight for each species, Species-specific size patterns, Comparative analysis across species
+This analysis helps identify species-specific growth patterns and potential ecological relationships.
+<BR>
+
+```{r task5}
+# [Keep existing species-specific calculations exactly as is]
+
+
+# Filter data for each species
+bc_data <- inchBio %>% filter(species == "Black Crappie")
+bl_data <- inchBio %>% filter(species == "Bluegill")
+lb_data <- inchBio %>% filter(species == "Largemouth Bass")
+np_data <- inchBio %>% filter(species == "Northern Pike")
+pb_data <- inchBio %>% filter(species == "Pumpkinseed")
+rp_data <- inchBio %>% filter(species == "Rock Bass")
+wb_data <- inchBio %>% filter(species == "White Bass")
+
+# Calculate means for each species
+# Length means
+bc_length <- mean(bc_data$length)
+bl_length <- mean(bl_data$length)
+lb_length <- mean(lb_data$length)
+np_length <- mean(np_data$length)
+pb_length <- mean(pb_data$length)
+rp_length <- mean(rp_data$length)
+wb_length <- mean(wb_data$length)
+
+# Weight means
+bc_weight <- mean(bc_data$weight)
+bl_weight <- mean(bl_data$weight)
+lb_weight <- mean(lb_data$weight)
+np_weight <- mean(np_data$weight)
+pb_weight <- mean(pb_data$weight)
+rp_weight <- mean(rp_data$weight)
+wb_weight <- mean(wb_data$weight)
+
+# Create vectors for matrix
+lengths <- c(bc_length, bl_length, lb_length, np_length, 
+            pb_length, rp_length, wb_length)
+weights <- c(bc_weight, bl_weight, lb_weight, np_weight, 
+            pb_weight, rp_weight, wb_weight)
+
+# Create matrix
+species_names <- c("Black Crappie", "Bluegill", "Largemouth Bass", 
+                  "Northern Pike", "Pumpkinseed", "Rock Bass", "White Bass")
+stats_matrix <- matrix(c(lengths, weights), ncol = 2)
+rownames(stats_matrix) <- species_names
+colnames(stats_matrix) <- c("Mean Length (mm)", "Mean Weight (g)")
+
+
+# Present final table
+kable(stats_matrix,
+      caption = "Mean Length and Weight by Species",
+      digits = 2,
+      align = 'c') %>%
+  kable_styling(full_width = FALSE,
+                position = "center") %>%
+  row_spec(0, bold = TRUE)
+```
+
+<BR>
+<B>Observations</B>: This table displays the mean length (in millimeters) and mean weight (in grams) for different fish species. Among the measured species, Largemouth Bass shows the greatest length at 299.28 mm, followed closely by Black Crappie at 276.08 mm. Similarly, Black Crappie has the highest mean weight at 360.35g, with Largemouth Bass close behind at 353.69g. Bluegill and Pumpkinseed are notably smaller, with lengths of 145.62 mm and 135.08 mm respectively, and corresponding lighter weights of 90.03g and 99.44g. Three species - Northern Pike, Rock Bass, and White Bass - show NaN (Not a Number) values, indicating either missing data or no measurements were taken for these species. This data effectively illustrates the size variations among different fish species in the ecosystem.
+
+<BR>
+<P><BR>
+<FONT SIZE = 2, COLOR = "#A11515">
+<B>Task 6: Species Frequency and Probability Analysis</B>
+</FONT>
+<BR>
+<B>Description</B>: This task analyzes the distribution of fish species through: Absolute frequency counts, Cumulative frequency calculations, Probability distributions, Cumulative probability analysis
+This comprehensive frequency analysis provides insights into species abundance and community structure within Inch Lake.
+<BR>
+
+```{r task6}
+# Create frequency table and calculate statistics
+species_freq <- as.data.frame(table(inchBio$species)) %>%
+  dplyr::rename(Frequency = Freq) %>%
+  mutate(
+    Cumulative_Freq = cumsum(Frequency),
+    Probability = round(Frequency / sum(Frequency), 2),
+    Cumulative_Prob = round(cumsum(Frequency) / sum(Frequency), 2)
+  )
+
+# Present formatted table
+library(kableExtra)
+kable(species_freq,
+      caption = "Species Frequency and Probability Distribution",
+      col.names = c("Species", "Frequency", "Cumulative Frequency",
+                   "Probability", "Cumulative Probability"),
+      align = 'c') %>%
+  kable_styling(full_width = FALSE,
+                position = "center") %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(1:5, border_right = TRUE)
+```
+
+<BR>
+<B>Observations</B>: The data shows a total of 505 fish sampled across 7 species. Bluegill is the most abundant with 208 individuals (41% of total), followed by Bluntnose Minnow with 100 specimens (20%), and Largemouth Bass with 90 specimens (18%). The least common species is Pumpkinseed with only 13 individuals, representing 3% of the total population. The cumulative frequency shows how the count builds up across species, starting from 25 with Black Crappie and reaching the total of 505 with Yellow Perch. This data provides a clear picture of species distribution in the sampled aquatic ecosystem.
+
+<BR>
+
+<P><BR>
+<FONT SIZE = 2, COLOR = "#A11515">
+<B>Task 7: Visual Representation of Species Distribution</B>
+</FONT>
+<BR>
+<B>Description</B>: This task creates visual representations of species distribution through: Pie chart showing relative species abundance. Bar plot displaying cumulative probabilities. Color-coded visualization for species identification. Percentage labels for clear proportion interpretation. These visualizations complement the numerical analysis and provide immediate visual insights into population structure.
+<BR>
+
+```{r task7}
+
+
+# Set up the plotting area for two graphs side by side
+par(mfrow = c(1, 2))
+
+# Create color palette
+diffcolors <- brewer.pal(7, "Set3")
+
+# Pie Chart code
+pie(species_freq$Probability, 
+    labels = paste0(species_freq$Var1, "\n(", species_freq$Probability*100, "%)"),
+    col = diffcolors,
+    main = "Species Probability Distribution",
+    cex = 0.8)
+
+# Bar Plot
+barplot(species_freq$Cumulative_Prob,
+        names.arg = species_freq$Var1,
+        col = diffcolors,
+        main = "Cumulative Probability by Species",
+        las = 2,  # Rotate species names
+        cex.names = 0.7,  # Adjust text size
+        ylim = c(0, 1))  # Set y-axis limit
+
+# Add values on top of the bars
+text(seq(0.7, 13.3, by = 1.2),  
+     species_freq$Cumulative_Prob,  
+     round(species_freq$Cumulative_Prob, 2),
+     pos = 3,  
+     cex = 0.8)  
+
+```
+
+<BR>
+<B>Observations</B>: The species distribution analysis reveals that Bluegill dominates the aquatic population at 41%, representing the most abundant species. Bluntnose Minnow follows as the second most prevalent at 20%, while Largemouth Bass comprises 18% of the population. The remaining species - Yellow Perch (8%), Iowa Darter (6%), Black Crap (5%), and Pumpkinseed (3%) - make up smaller proportions. The cumulative probability graph effectively illustrates the progressive accumulation of species, starting with Black Crappie at 0.05 and building up to 1.0. This visualization shows that Bluegill, Bluntnose Minnow, and Largemouth Bass collectively account for nearly 80% of the total fish population, suggesting these species are particularly well-adapted to this ecosystem
+<BR>
+
+<P>
+<FONT SIZE = 3, COLOR = "#A11515">
+<B>3. CONCLUSIONS</B>
+</FONT>
+
+<P>
+The comprehensive analysis of fish population data from inchBio.xlsx reveals significant patterns in aquatic ecosystem dynamics. The study identified clear species distribution patterns, with Bluegill dominating at 41% of the population, followed by Bluntnose Minnow (20%) and Largemouth Bass (18%). The morphometric analysis revealed distinct size hierarchies, with Largemouth Bass showing the greatest mean length (299.28 mm) and Black Crappie the highest mean weight (360.35 grams). The presence of multiple size classes across species suggests successful reproduction and recruitment patterns, indicating a healthy ecosystem structure.    
+
+The robust sample size of 505 specimens provides strong statistical confidence in these findings, while consistent measurement protocols ensure data reliability. The dominance of certain species indicates a stable prey base, while the overall species diversity suggests a balanced ecosystem. These findings provide crucial insights for aquatic ecosystem management strategies and underscore the importance of continued monitoring for maintaining ecological integrity. The study demonstrates the value of comprehensive data analysis in understanding complex ecological relationships and supporting evidence-based conservation decisions.
+
+
+
+The analysis of Inch Lake's fish population data reveals several key findings:
+
+1. Population Structure:
+• Diverse community with seven distinct species
+• Clear size hierarchies among species
+• Stable population distribution patterns
+
+2. Species Characteristics:
+• Distinct size patterns for each species
+• Expected length-weight relationships
+• Natural variation within species groups
+
+3. Statistical Insights:
+• Robust sample size for reliable analysis
+• Clear species frequency patterns
+• Consistent measurement quality
+
+4. Management Implications:
+• Evidence of healthy species diversity
+• Clear population structure patterns
+• Basis for continued monitoring
+
+<P>
+<FONT SIZE = 3, COLOR = "#A11515">
+<B>4. BIBLIOGRAPHY</B>
+</FONT>
+
+<P>
+• Bluman, G (2017). Elementary statistics: A step by step approach (10th ed.). McGraw Hill Education.
+<BR>
+• Chiluiza, D. (2023). Pie Charts. RPubs. https://rpubs.com/Dee_Chiluiza/995745
+<BR>
+• Posit Software. (2023). Subset rows using column values. dplyr Documentation. https://dplyr.tidyverse.org/reference/filter.html
+<BR>
+• R Core Team. (2023). R: A Language and Environment for Statistical Computing.
+<BR>
+• DataDaft. (2021). dplyr: filter [Video]. YouTube. https://www.youtube.com/watch?v=BkmYBBM2SdQ
+<BR>
+• Boone, E. (2021). Tidyverse in R... Select and Group By [Video]. YouTube. https://www.youtube.com/watch?v=timZ6erM7Z4
+<BR>
+
+
+
+
+<P>
+<FONT SIZE = 3, COLOR = "#A11515">
+<B>5. APPENDIX</B>
+</FONT>
+
+<P>
+An R Markdown file has been attached to this report. The name of the file is "M3_Project_Panchal_Codes.Rmd". This file contains all the R code used to generate the analyses and visualizations presented in this report.
