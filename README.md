@@ -1,4 +1,4 @@
-# ALY6000 — Introduction to Analytics: R Analytics Series
+# R Analytics Series — from R Basics to Global Sales Analysis
 
 **By Dev Panchal, Northeastern University — ALY6000, instructor Dr. Dee / Diana Chiluiza, Jan–Feb 2025.**
 
