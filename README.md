@@ -1,4 +1,4 @@
-# R Analytics Series — from R Basics to Global Sales Analysis
+# ALY6000 — Introduction to Analytics: R Analytics Series
 
 **By Dev Panchal, Northeastern University — ALY6000, instructor Dr. Dee / Diana Chiluiza, Jan–Feb 2025.**
 
@@ -12,7 +12,7 @@ This is not one homework file. It is a series that starts with R basics and ends
 
 ---
 
-## Project 1 — R Basics
+## Learning R: How to Summarise Data
 
 **What it is:** The starting point: R objects, vectors and matrices, and basic statistics — mean, median, standard deviation and quantiles, including car-speed data and a revenue matrix.
 
@@ -22,7 +22,7 @@ This is not one homework file. It is a series that starts with R basics and ends
 
 ---
 
-## Project 2 — Market Performance Across Regions
+## Why Sales and Profits Differ by Region
 
 **Question:** Why do some regions sell well and others struggle — and what should a company do about it?
 
@@ -45,7 +45,7 @@ This is not one homework file. It is a series that starts with R basics and ends
 
 ---
 
-## Project 3 — Fish Population Analysis in Inch Lake
+## Fish in Inch Lake: Is the Ecosystem Healthy?
 
 **Question:** What does the fish population of a freshwater lake look like, and is the ecosystem healthy?
 
@@ -67,7 +67,7 @@ This is not one homework file. It is a series that starts with R basics and ends
 
 ---
 
-## Project 4 — Wine Analysis: Alcohol, Phenolics and Region
+## Wine Quality by Region: Massachusetts, Spain and Italy
 
 **Question:** How do wine characteristics differ, and can region explain those differences?
 
@@ -90,7 +90,7 @@ This is not one homework file. It is a series that starts with R basics and ends
 
 ---
 
-## Project 6 — Final Project: Global Sales Performance Analysis
+## Global Sales 2023: Where the Money Comes From, and Where It Leaks
 
 **Question:** Across 1,000 orders and multiple markets, where is the money, where is it leaking, and what should change?
 
