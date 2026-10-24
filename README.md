@@ -16,7 +16,7 @@ This is not one homework file. It is a series that starts with R basics and ends
 
 **What it is:** The starting point: R objects, vectors and matrices, and basic statistics — mean, median, standard deviation and quantiles, including car-speed data and a revenue matrix.
 
-**Files:** `project1/Panchal_Project1_Script.R`, `project1/ALY6000_Project1_Report.pdf`
+**Files:** `learning-r-summarise-data/Panchal_Project1_Script.R`, `learning-r-summarise-data/ALY6000_Project1_Report.pdf`
 
 **What to take from it:** The foundations every later project builds on — loading data, summarising it correctly, and reporting it cleanly.
 
@@ -41,7 +41,7 @@ This is not one homework file. It is a series that starts with R basics and ends
 
 **Conclusion:** Grow in Africa with products that already sell well there, price differently by region based on profit, tailor marketing to weaker regions, and optimise shipping routes by regional cost. Track regional performance regularly instead of judging the business as one average.
 
-**Files:** `project2/Panchal_ALY6000Project2.Rmd`, `project2/Panchal_ALY6000Project2.html`
+**Files:** `why-sales-profits-differ-by-region/Panchal_ALY6000Project2.Rmd`, `why-sales-profits-differ-by-region/Panchal_ALY6000Project2.html`
 
 ---
 
@@ -63,7 +63,7 @@ This is not one homework file. It is a series that starts with R basics and ends
 
 **Conclusion:** A stable prey base and a spread of species point to a balanced ecosystem, and the 505-specimen sample gives strong confidence in that read. Continued monitoring matters — fish populations are an early indicator of ecosystem change.
 
-**Files:** `project3/M3_Project_Panchal_Codes.Rmd`, `project3/M3_Project_Panchal_Report.html`
+**Files:** `fish-in-inch-lake-ecosystem-health/M3_Project_Panchal_Codes.Rmd`, `fish-in-inch-lake-ecosystem-health/M3_Project_Panchal_Report.html`
 
 ---
 
@@ -86,7 +86,7 @@ This is not one homework file. It is a series that starts with R basics and ends
 
 **Conclusion:** Wine quality control needs precise, region-aware measurement. This project also built a reusable framework: understand the data, analyse iteratively, document observations immediately, and tie statistics back to industry context.
 
-**Files:** `project4/M4_Project_Panchal_Code.Rmd`, `project4/M4_Project_Panchal_Report.html`
+**Files:** `wine-quality-by-region/M4_Project_Panchal_Code.Rmd`, `wine-quality-by-region/M4_Project_Panchal_Report.html`
 
 ---
 
@@ -126,7 +126,7 @@ This is not one homework file. It is a series that starts with R basics and ends
 
 **Conclusion:** Asia Pacific and Europe drive almost two-thirds of revenue, Africa is the smallest market and the most expensive to serve, and returns — nearly a third of quantity on average — are a major profitability leak. The recommendations are market-specific pricing, cutting return rates in high-volume markets, and expanding premium shipping only where customers show they will pay for it.
 
-**Files:** `project6/Panchal_Dev_Project6_Codes.Rmd`, `project6/Panchal_Dev_Project6_Report.html`
+**Files:** `global-sales-2023-money-and-leaks/Panchal_Dev_Project6_Codes.Rmd`, `global-sales-2023-money-and-leaks/Panchal_Dev_Project6_Report.html`
 
 ---
 
